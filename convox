@@ -1,0 +1,51 @@
+BEGIN {
+months[1] = "Jan"
+months[2] = "Feb"
+months[3] = "Mar"
+months[4] = "Apr"
+months[5] = "May"
+months[6] = "Jun"
+months[7] = "Jul"
+months[8] = "Aug"
+months[9] = "Sep"
+months[10] = "Oct"
+months[11] = "Nov"
+months[12] = "Dec"
+}
+
+{								# MAIN
+					
+gsub( /,/ , "")					#delete comma delimiters
+
+split ($1, date, "-")				#parse date
+date[30]=sprintf ("%02d" , date[3] )		#make the day two-digit with leading zero
+date[20]=months[date[2]]				#month
+date[10]=date[1]				#year
+split ($2, time, ":")				#parse time
+time[1]=sprintf ("%02d" , time[1] )		#make the hour two-digit with leading zero
+								#output modified 0$
+##print  $1 " " $9  " " $2 " - [" date[2] "/" date[1] "/" date[3] ":" time[1] ":" time[2] ":" time[3] " -0500] \"" $13 " " $9 "\" " $11 " " $10
+print $8 " - - " "[" date[30] "/" date[20] "/" date[10] ":" time[1] ":" time[2] ":" time[3] " -0100] " "\""$4 " " $5 " HTTP\/1.1\" " $11 " " $12 " \"http://localhost/\" " $8
+
+#print date[1] " " date[2] " " date[3]
+#print time[1]
+#print $1 "1" #date
+#print $2 "2" #time
+#print $3 "3" #ip address
+#print $4 "4" #method get post
+#print $5 "5" #url
+#print $6 "6" #postdata
+#print $7 "7" #pid
+#print $8 "8" #auth user
+#print $9 "9" #remote ip
+#print $10 "10" #browser data
+#print $11 "11" #http response
+#print $12 "12" #http response 2
+#print $13 "13" #http response 3
+#print $14 "14" #dunno
+#print $15 "15" #nothing
+}
+
+
+								# END MAIN
+
